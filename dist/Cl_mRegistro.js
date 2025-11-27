@@ -1,0 +1,92 @@
+import { Cl_mEstudiantes } from "./Cl_mEstudiantes.js";
+import { Cl_mInvitados } from "./Cl_mInvitadosClean.js";
+export default class Cl_mRegistro {
+    constructor() {
+        this.cntEstudiantes = 0;
+        this.cntInvitados = 0;
+        this.cntInvitadosNatural = 0;
+        this.cntInvitadosEmpresarial = 0;
+        this.registro = [];
+    }
+    procesarUsuario(mUsuario) {
+        if (mUsuario instanceof Cl_mEstudiantes) {
+            this.cntEstudiantes++;
+        }
+        if (mUsuario instanceof Cl_mInvitados) {
+            this.cntInvitados++;
+        }
+    }
+    totalRegistrados() {
+        return this.cntEstudiantes + this.cntInvitados;
+    }
+    getStatistics() {
+        const total = this.totalRegistrados();
+        const estudiantes = this.cntEstudiantes;
+        const invitadosNatural = this.cntInvitadosNatural;
+        const invitadosEmpresarial = this.cntInvitadosEmpresarial;
+        const porcentajeEstudiantes = total ? (estudiantes / total) * 100 : 0;
+        const porcentajeNatural = total ? (invitadosNatural / total) * 100 : 0;
+        const porcentajeEmpresarial = total ? (invitadosEmpresarial / total) * 100 : 0;
+        return {
+            total,
+            estudiantes,
+            invitadosNatural,
+            invitadosEmpresarial,
+            porcentajeEstudiantes,
+            porcentajeNatural,
+            porcentajeEmpresarial,
+        };
+    }
+    listar() {
+        let lista = [];
+        this.registro.forEach((usuario) => {
+            if (usuario && typeof usuario.toJSON === "function")
+                lista.push(usuario.toJSON());
+            else
+                lista.push(usuario);
+        });
+        return lista;
+    }
+    listarEstudiantes() {
+        const lista = [];
+        this.registro.forEach((usuario) => {
+            if (usuario instanceof Cl_mEstudiantes)
+                lista.push(usuario.toJSON());
+        });
+        return lista;
+    }
+    listarInvitados() {
+        const lista = [];
+        this.registro.forEach((usuario) => {
+            if (usuario instanceof Cl_mInvitados)
+                lista.push(usuario.toJSON());
+        });
+        return lista;
+    }
+    agregarEstudiantes({ estudiantes, callback }) {
+        let error = estudiantes.error();
+        if (error) {
+            callback(error);
+            return;
+        }
+        this.registro.push(estudiantes);
+        this.cntEstudiantes++;
+        callback(false);
+    }
+    agregarInvitados({ invitados, callback }) {
+        let error = invitados.error();
+        if (error) {
+            callback(error);
+            return;
+        }
+        this.registro.push(invitados);
+        this.cntInvitados++;
+        if (invitados.tipoInvitado && invitados.tipoInvitado.toLowerCase() === "empresarial") {
+            this.cntInvitadosEmpresarial++;
+        }
+        else {
+            this.cntInvitadosNatural++;
+        }
+        callback(false);
+    }
+}
