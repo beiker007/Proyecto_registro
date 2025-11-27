@@ -64,7 +64,8 @@ export default class Cl_vRegistro extends Cl_vGeneral {
       });
 
       const iFiltered = invitados.filter((i: iInvitados) => {
-        const hay = `${i.tipoInvitado} ${i.tipoPersona} ${i.cargo} ${i.empresa}`.toLowerCase();
+        const hay =
+          `${i.tipoInvitado} ${i.tipoPersona} ${i.cargo} ${i.empresa}`.toLowerCase();
         return hay.includes(query);
       });
 
@@ -82,21 +83,27 @@ export default class Cl_vRegistro extends Cl_vGeneral {
         const hay = `${s.carrera} ${s.proyecto} ${s.equipo}`.toLowerCase();
         return hay.includes(query);
       });
-      resultsHtml = `<h3>Estudiantes (${filtered.length})</h3>` + this.renderEstudiantes(filtered);
+      resultsHtml =
+        `<h3>Estudiantes (${filtered.length})</h3>` +
+        this.renderEstudiantes(filtered);
     } else if (tipo === "Invitados") {
       const invitados = this.controlador?.invitadosRegistrados() || [];
       const filtered = invitados.filter((i: iInvitados) => {
-        const hay = `${i.tipoInvitado} ${i.tipoPersona} ${i.cargo} ${i.empresa}`.toLowerCase();
+        const hay =
+          `${i.tipoInvitado} ${i.tipoPersona} ${i.cargo} ${i.empresa}`.toLowerCase();
         return hay.includes(query);
       });
-      resultsHtml = `<h3>Invitados (${filtered.length})</h3>` + this.renderInvitados(filtered);
+      resultsHtml =
+        `<h3>Invitados (${filtered.length})</h3>` +
+        this.renderInvitados(filtered);
     }
 
-    this.divResults.innerHTML = resultsHtml || "<p>No se encontraron registros.</p>";
+    this.divResults.innerHTML =
+      resultsHtml || "<p>No se encontraron registros.</p>";
   }
 
   private renderEstudiantes(list: iEstudiantes[]): string {
-    let html = `<table class="table"><thead><tr><th>Carrera</th><th>Proyecto</th><th>Equipo</th></tr></thead><tbody>`;
+    let html = `<table class="table"><thead><tr><th>Nombre</th><th>Proyecto</th><th>Equipo</th></tr></thead><tbody>`;
     list.forEach((s) => {
       html += `<tr><td>${s.carrera}</td><td>${s.proyecto}</td><td>${s.equipo}</td></tr>`;
     });
@@ -107,7 +114,9 @@ export default class Cl_vRegistro extends Cl_vGeneral {
   private renderInvitados(list: iInvitados[]): string {
     let html = `<table class="table"><thead><tr><th>Tipo Invitado</th><th>Nombre</th><th>Cargo</th><th>Empresa</th></tr></thead><tbody>`;
     list.forEach((i) => {
-      html += `<tr><td>${i.tipoInvitado}</td><td>${i.tipoPersona}</td><td>${i.cargo}</td><td>${i.empresa ? i.empresa : "-"}</td></tr>`;
+      html += `<tr><td>${i.tipoInvitado}</td><td>${i.tipoPersona}</td><td>${
+        i.cargo
+      }</td><td>${i.empresa ? i.empresa : "-"}</td></tr>`;
     });
     html += `</tbody></table>`;
     return html;
