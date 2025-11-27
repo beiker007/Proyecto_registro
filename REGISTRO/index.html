@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>REGISTRO</title>
+    <link rel="stylesheet" href="style.css">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+<body>
+
+
+        <main id="appViews">
+
+        <header>
+            <h1>REGISTRO - Demo</h1>
+        </header>
+        <section id="mainForm" class="view show" role="region" aria-labelledby="mainForm_title">
+            <div class="toolbar">
+                <button id="mainForm_btAgregarInvitados">Agregar Invitados</button>
+                <button id="mainForm_btAgregarEstudiantes">Agregar Estudiantes</button>
+                <button id="mainForm_btRegistro">Ver Registro</button>
+            </div>
+            <div style="display:flex; gap:20px;">
+                <div>
+                    <h3>Invitados</h3>
+                    <div id="mainForm_dataInvitados"></div>
+                </div>
+                <div>
+                    <h3>Estudiantes</h3>
+                    <div id="mainForm_dataEstudiantes"></div>
+                </div>
+            </div>
+            <div>
+                Total registrados: <span id="mainForm_lblTotalRegistrados">0</span>
+            </div>
+        </section>
+
+        <section id="Invitados" class="view" role="region" aria-labelledby="Invitados_title">
+            <div class="toolbar">
+                <button id="Invitados_btAgregarInvitado">Agregar Invitado (prompt)</button>
+                <button id="Invitados_btBack">Volver</button>
+            </div>
+            <div id="Invitados_divInvitadosRegistrados"></div>
+        </section>
+
+        <section id="Estudiantes" class="view" role="region" aria-labelledby="Estudiantes_title">
+            <div class="toolbar">
+                <button id="Estudiantes_btAgregarEstudiantes">Agregar Estudiante (prompt)</button>
+                <button id="Estudiantes_btBack">Volver</button>
+            </div>
+            <div id="Estudiantes_divEstudiantesRegistrados"></div>
+        </section>
+
+        <section id="registro" class="view" role="region" aria-labelledby="registro_title">
+            <div class="toolbar">
+                <input id="registro_inputSearch" placeholder="Buscar..." />
+                <select id="registro_selectTipo"></select>
+                <button id="registro_btBuscar">Buscar</button>
+                <button id="registro_btClear">Limpiar</button>
+                <button id="registro_btEstadistica">Estadisticas</button>
+                <button id="registro_btVolver">Volver</button>
+            </div>
+            <div id="registro_divResults"></div>
+        </section>
+
+        <section id="estadistica" class="view" role="region" aria-labelledby="estadistica_title">
+            <div class="toolbar">
+                <button id="estadistica_btVolver">Volver al Registro</button>
+            </div>
+            <div id="estadistica_divChart"></div>
+        </section>
+
+
+        <script type="module" src="./src/Cl_init.js"></script>
+</body>
+</html>
