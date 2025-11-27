@@ -25,24 +25,34 @@ vistaEstadistica.controlador = controlador;
 controlador.mostrarUsuario();
 // Wire additional back buttons that may not be created by the view classes
 try {
-    vistaInvitados.crearHTMLButtonElement("btBack", { onclick: () => controlador.mostrarUsuario() });
+    vistaInvitados.crearHTMLButtonElement("btBack", {
+        onclick: () => controlador.mostrarUsuario(),
+    });
 }
 catch (_a) { }
 try {
-    vistaEstudiantes.crearHTMLButtonElement("btBack", { onclick: () => controlador.mostrarUsuario() });
+    vistaEstudiantes.crearHTMLButtonElement("btBack", {
+        onclick: () => controlador.mostrarUsuario(),
+    });
 }
 catch (_b) { }
 try {
-    vistaEstadistica.crearHTMLButtonElement("btVolver", { onclick: () => controlador.mostrarRegistro() });
+    vistaEstadistica.crearHTMLButtonElement("btVolver", {
+        onclick: () => controlador.mostrarRegistro(),
+    });
 }
 catch (_c) { }
 // Wire registro view button to return to usuario
 try {
-    vistaRegistro.crearHTMLButtonElement("btVolver", { onclick: () => controlador.mostrarUsuario() });
+    vistaRegistro.crearHTMLButtonElement("btVolver", {
+        onclick: () => controlador.mostrarUsuario(),
+    });
 }
 catch (_d) { }
 // Wire mainForm button to open registro
 try {
-    vistaUsuario.crearHTMLButtonElement("btRegistro", { onclick: () => controlador.mostrarRegistro() });
+    vistaUsuario.crearHTMLButtonElement("btRegistro", {
+        onclick: () => controlador.mostrarRegistro(),
+    });
 }
 catch (_e) { }
